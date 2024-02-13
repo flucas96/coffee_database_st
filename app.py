@@ -85,13 +85,12 @@ if len(df) == 0:
 
 else:
     df["Hinzugefügt"] = df["Hinzugefügt"].dt.strftime("%d.%m.%Y %H:%M:%S")
+    df = df[["Bild", "Name", "Händler", "Preis", "Bewertung","Mahlgrad", "Kommentar", "Hinzugefügt", "id"]]
     for col in df.columns:
-        df.rename(columns={col: f"<b>{col}<b>"}, inplace=True)
-
+        df.rename(columns={col: f"<b>{col}</b>"}, inplace=True)
     clicked_coffee = st_mui_table(
-    df,  return_clicked_cell=True
+    df,  return_clicked_cell=True,detailColumns = ["<b>Mahlgrad</b>", "<b>Kommentar</b>", "<b>Hinzugefügt</b>", "<b>id</b>"]
 )
-    st.write(clicked_coffee)
 
     if clicked_coffee:
         #clicked row
@@ -113,6 +112,7 @@ else:
             kommentar = st.text_area("Kommentar", value=clicked_coffee["Kommentar"].values[0])
             st.markdown("<br>", unsafe_allow_html=True)
             _,middle,_ = st.columns([1,5,1])
+            st.markdown("<br>", unsafe_allow_html=True)
             middle.markdown("<center>" + clicked_coffee["Bild"].values[0] + "</center>", unsafe_allow_html=True)
             col1,col2 = st.columns([1,1])
             with col1:
@@ -144,3 +144,7 @@ else:
             if del_btn:
                 connectors.delete_coffee(clicked_coffee["id"].values[0])
                 st.rerun()
+
+
+    else:
+        sac.alert(label='<b>Kein Kaffee ausgewählt<b>', size='lg', banner=True, icon=True, closable=True)

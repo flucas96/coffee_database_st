@@ -150,6 +150,7 @@ def execute_sql_code(sql_code,max_tries = 5):
 
     return c
 
+st.cache_data()
 def download_data(table,max_tries = 5):
     """
     df: hochzuladener df
