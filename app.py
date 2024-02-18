@@ -133,7 +133,7 @@ else:
                     changes["Preis"] = preis
                 if mahlgrad != clicked_coffee["Mahlgrad"].values[0]:
                     changes["Mahlgrad"] = mahlgrad
-                if bewertung != clicked_coffee["Bewertung"].values[0]:
+                if str(int(bewertung)) != str(clicked_coffee["Bewertung"].values[0]):
                     changes["Bewertung"] = bewertung
                 if kommentar != clicked_coffee["Kommentar"].values[0]:
                     changes["Kommentar"] = kommentar
