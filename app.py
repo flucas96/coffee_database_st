@@ -144,6 +144,7 @@ else:
             if del_btn:
                 connectors.delete_coffee(clicked_coffee["id"].values[0])
                 st.rerun()
+                #new push
 
 
     else:
